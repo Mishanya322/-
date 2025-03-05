@@ -116,27 +116,23 @@ class CatDetailDialog(QDialog):
         self.edit_button.clicked.connect(self.toggle_edit)
         self.save_button.clicked.connect(self.save_changes)
         
-    def toggle_edit(self):
-        self.is_editing = not self.is_editing
-        if self.is_editing:
-
-            
-            self.name_edit.show()
-            self.origin_edit.show()
-            self.temperament_edit.show()
-            self.description_edit.show()
-            
-            self.edit_button.setText("Отмена")
-            self.save_button.show()
+    def toggle_edit(self): # Метод окна редактирования
+        self.is_editing = not self.is_editing # смена окон между редактированием и сохранением
+        if self.is_editing: # режим редактирования
+            self.name_edit.show() # Показываем поле, где можно менять имя
+            self.origin_edit.show() # Показываем поле, где можно менять происхождение
+            self.temperament_edit.show() # Показываем поле, где можно менять темперамент
+            self.description_edit.show() # Показываем поле, где можно менять описание
+            self.edit_button.setText("Отмена") # кнопка, чтобы можно было выйти
+            self.save_button.show() #
         else:
-            
-            self.name_label.show()
-            self.origin_label.show()
-            self.temperament_label.show()
-            self.description_label.show()
-            
-            self.edit_button.setText("Редактировать")
-    
+            self.name_label.show() # текст с именем
+            self.origin_label.show() # текст с именем
+            self.temperament_label.show() # текст с именем
+            self.description_label.show() # текст с именем
+            self.edit_button.setText("Редактировать") # возвращение кнопки редактирования
+            self.save_button.hide() # убираем кнопку сохранения
+     
     def save_changes(self):
         self.cat_data['name'] = self.name_edit.text()
         self.cat_data['origin'] = self.origin_edit.text()
@@ -146,7 +142,6 @@ class CatDetailDialog(QDialog):
         self.origin_label.setText(f"Origin: {self.cat_data['origin']}")
         self.temperament_label.setText(f"Temperament: {self.cat_data['temperament']}")
         self.description_label.setText(f"Description: {self.cat_data['description']}")
-        
         self.toggle_edit()
 
 if __name__ == '__main__':
